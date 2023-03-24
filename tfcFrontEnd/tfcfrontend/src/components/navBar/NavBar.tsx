@@ -2,6 +2,7 @@ import React from "react";
 import "src/components/navBar/navBar.scss";
 import { useState } from "react";
 import {FaBars} from'react-icons/fa/index';
+import logoGameZ from 'src/images/logoGameZ.png';
 
 export function CustomNavBar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -14,7 +15,7 @@ export function CustomNavBar() {
     <>
       <header>
         <div className="logo">
-          <a href="home">Your Logo Here</a>
+          <img src={logoGameZ} alt={"Main logo"}></img>
         </div>
         <nav className={`menu ${showMenu ? "show" : ""}`}>
           <ul className="centered">
