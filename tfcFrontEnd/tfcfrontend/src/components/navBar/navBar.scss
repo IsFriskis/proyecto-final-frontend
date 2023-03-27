@@ -28,6 +28,7 @@ header {
   }
 
   .menu {
+    place-self: flex-end;
     ul {
       display: flex;
       list-style: none;
@@ -38,13 +39,14 @@ header {
     li {
       margin: 0 10px;
 
-      a {
+      p {
         color: #333;
         text-decoration: none;
         font-size: 16px;
         font-weight: bold;
+        cursor: pointer;
       }
-      a:hover{
+      p:hover{
         color: #9c9c9c;
       }
     }

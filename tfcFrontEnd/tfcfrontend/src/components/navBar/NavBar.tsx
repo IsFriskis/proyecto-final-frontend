@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "src/components/navBar/navBar.scss";
 import { useState } from "react";
-import {FaBars} from'react-icons/fa/index';
-import logoGameZ from 'src/images/logoGameZ.png';
+import { FaBars } from "react-icons/fa/index";
+import logoGameZ from "src/images/logoGameZ.png";
+import { useNavigate } from "react-router-dom";
 
 export function CustomNavBar() {
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+  function NavigateToHome() {
+    navigate("/home");
+  }
+
+  function NavigateToSearch() {
+    navigate("/search");
+  }
+
+  function NavigateToRanking() {
+    navigate("/ranking");
+  }
+
+  function NavigateToAbout() {
+    navigate("/about");
+  }
+
+  function NavigateToRegister() {
+    navigate("/register");
+  }
+
+  function NavigateToLogin() {
+    navigate("/login");
+  }
 
   return (
     <>
@@ -20,22 +45,22 @@ export function CustomNavBar() {
         <nav className={`menu ${showMenu ? "show" : ""}`}>
           <ul className="centered">
             <li>
-              <a href="home">Home</a>
+              <p onClick={NavigateToHome}>Home</p>
             </li>
             <li>
-              <a href="search">Search</a>
+              <p onClick={NavigateToSearch}>Search</p>
             </li>
             <li>
-              <a href="ranking">Rankings</a>
+              <p onClick={NavigateToRanking}>Rankings</p>
             </li>
             <li>
-              <a href="about">About</a>
+              <p onClick={NavigateToAbout}>About</p>
             </li>
           </ul>
         </nav>
         <div className="buttons">
-          <button>Login</button>
-          <button>Register</button>
+          <button onClick={NavigateToLogin}>Login</button>
+          <button onClick={NavigateToRegister}>Register</button>
         </div>
         <div className="menu-icon" onClick={toggleMenu}>
           <FaBars />
