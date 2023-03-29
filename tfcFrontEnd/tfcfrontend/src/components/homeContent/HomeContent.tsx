@@ -38,7 +38,10 @@ export const IconStatus = () => {
     );
   } else {
     return (
-        <p>Backend service status: <Lottie options={defaultOptions} height={30} width={30} /></p>
+      <p>
+        Backend service status:{" "}
+        <Lottie options={defaultOptions} height={30} width={30} />
+      </p>
     );
   }
 };
@@ -47,30 +50,31 @@ export default IconStatus;
 
 export function HomeContent() {
   return (
-    <>
-      <main className="container">
-        <div className="left-column">
-          <div className="banner">
-            <IconStatus />
-          </div>
+    <main className="container">
+      <div className="left-column">
+        <div className="banner">
+          <IconStatus />
         </div>
-        <div className="right-column">
-          <div className="news-feed">
-            <h2>News Feed</h2>
-            <ul>
-              <li>
-                <EmbedTweet tweetId="1633520456258179075" />
-              </li>
-              <li>
-                <EmbedTweet tweetId="1638301207016927232" />
-              </li>
-              <li>
-                <EmbedTweet tweetId="1638230506176417792" />
-              </li>
-            </ul>
-          </div>
+      </div>
+      <div className="right-column">
+        <div className="news-feed">
+          <h2>News Feed</h2>
+          <ul>
+            <li>
+              <EmbedTweet tweetId="1633520456258179075" />
+            </li>
+            <li>
+              <EmbedTweet tweetId="1638301207016927232" />
+            </li>
+            <li>
+              <EmbedTweet tweetId="1638230506176417792" />
+            </li>
+          </ul>
         </div>
-      </main>
-    </>
+      </div>
+      <div className="emptyColumn">
+
+      </div>
+    </main>
   );
 }

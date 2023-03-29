@@ -6,6 +6,7 @@ header {
   padding-right: 20px;
   padding-left: 20px;
   position: relative;
+  box-sizing: border-box;
   top: 0;
   left: 0;
   width: 100%;
@@ -13,11 +14,12 @@ header {
   border-bottom: 4px solid #000000;
 
   .logo {
-    width: 230px;
+    width: 110px;
     background-size: cover;
     background-repeat: no-repeat;
     height: 67px;
     display: flex;
+    cursor: pointer;
     a {
       font-size: 24px;
       color: #333;
@@ -28,7 +30,7 @@ header {
   }
 
   .menu {
-    place-self: flex-end;
+    place-self: flex;
     ul {
       display: flex;
       list-style: none;

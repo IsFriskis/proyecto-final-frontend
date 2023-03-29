@@ -3,20 +3,23 @@ $background-color: #f5f5f5;
 $primary-color: #000000;
 $secondary-color: #5cb85c;
 $danger-color: #d9534f;
+$header-height: 71px;
+$footer-height: 73px;
 
 .container {
   padding: 0;
   margin: 0;
-  margin-top: 20px;
-  margin-left: 20px;
+  width: 100vw;
+  height: calc(100vh - $header-height - $footer-height);
   display: flex;
   flex-direction: row;
 }
 
 .left-column {
-  flex: 1;
   flex-direction: row;
-  width: 25%;
+  width: 30%;
+  box-sizing: border-box;
+  padding: 20px;
 
   // Banner styles
   .banner {
@@ -35,16 +38,18 @@ $danger-color: #d9534f;
 }
 
 .right-column {
-    flex: 1 ;
-    flex-direction: row;
-    width: 70%;
-    margin-left: 28px;
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
-    padding-left: 83px;
-    padding-right: 83px;
-    height: 772px;
-    overflow: auto;
+  flex: 1;
+  flex-direction: row;
+  width: 40%;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #000000;
+  height: 100%;
+  padding-right: 30px;
+  padding-left: 30px;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   .news-feed {
     h2 {
@@ -56,6 +61,7 @@ $danger-color: #d9534f;
       list-style-type: none;
       margin: 0;
       padding: 0;
+      text-align: -webkit-center;
 
       li {
         margin: 10px 0;
@@ -70,4 +76,7 @@ $danger-color: #d9534f;
       }
     }
   }
+}
+.emptyColumn {
+  width: 30%;
 }

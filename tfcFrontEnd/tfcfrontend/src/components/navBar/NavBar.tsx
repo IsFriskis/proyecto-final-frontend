@@ -40,7 +40,7 @@ export function CustomNavBar() {
     <>
       <header>
         <div className="logo">
-          <img src={logoGameZ} alt={"Main logo"}></img>
+          <img src={logoGameZ} alt={"Main logo"} onClick={NavigateToHome}></img>
         </div>
         <nav className={`menu ${showMenu ? "show" : ""}`}>
           <ul className="centered">
