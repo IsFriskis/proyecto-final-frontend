@@ -95,6 +95,14 @@ header {
 .buttons {
   display: flex;
   gap: 1rem;
+  .registerLogin{
+    color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: white;
+  }
 }
 
 

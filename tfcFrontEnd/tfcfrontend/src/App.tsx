@@ -4,8 +4,9 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { HomePage } from "./modules/home/HomePage";
 import { LoginPage } from "./modules/login/LoginPage";
 import { NotFoundPage } from "./modules/notFound/NotFoundPage";
-import { Navbar } from "react-bootstrap";
 import { Layout } from "./modules/layout/Layout";
+import { SearchPage } from "./modules/search/SearchPage";
+import { AboutPage } from "./modules/about/AboutPage";
 
 const ROUTES = [
   {
@@ -15,6 +16,14 @@ const ROUTES = [
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/search",
+    element: <SearchPage />,
+  },
+  {
+    path: "/about",
+    element: <AboutPage />,
   },
 ];
 

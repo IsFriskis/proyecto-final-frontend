@@ -1,6 +1,7 @@
 import "./logincontent.css";
 
 export function LoginContent2(){
+  //TODO: Implement login function css and js for making the animations work.
     return (
         <div className="page">
           <div className="container2">
@@ -9,7 +10,7 @@ export function LoginContent2(){
               <div className="eula">By logging in you agree to the ridiculously long terms that you didn't bother to read</div>
             </div>
             <div className="right">
-              <svg viewBox="0 0 320 300">
+              <svg className="svg2" viewBox="0 0 320 300">
                 <defs>
                   <linearGradient
                     id="linearGradient"

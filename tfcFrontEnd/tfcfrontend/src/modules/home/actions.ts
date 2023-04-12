@@ -7,7 +7,7 @@ export const SERVICE_STATUS_RESPONSE = 'SERVICE_STATUS_RESPONSE';
 
 
 export const checkStatus = (): any => {
-    return (dispatch: (arg0: { type: string; data?: any; }) => void) => {
+    return (dispatch: (arg0: { type: string; data?: any; loading?: boolean }) => void) => {
         dispatch({
             type: SERVICE_STATUS_REQUEST,
             data: null,

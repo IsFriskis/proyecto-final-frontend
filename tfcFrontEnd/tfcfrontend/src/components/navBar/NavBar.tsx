@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import "src/components/navBar/navBar.scss";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa/index";
@@ -59,8 +58,8 @@ export function CustomNavBar() {
           </ul>
         </nav>
         <div className="buttons">
-          <button onClick={NavigateToLogin}>Login</button>
-          <button onClick={NavigateToRegister}>Register</button>
+          <button className="registerLogin" onClick={NavigateToLogin}>Login</button>
+          <button className="registerLogin" onClick={NavigateToRegister}>Register</button>
         </div>
         <div className="menu-icon" onClick={toggleMenu}>
           <FaBars />

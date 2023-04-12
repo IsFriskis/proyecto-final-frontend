@@ -1,0 +1,68 @@
+.userdiv {
+  background: black;
+  width: 695px;
+  height: 124px;
+  display: flex;
+  border: 2px solid #b2beb5;
+  border-radius: 27px;
+  margin-top: 5px;
+  margin-bottom: 40px;
+
+  .logo {
+    width: 30%;
+    padding: 5px;
+    img {
+      width: 113px;
+      margin-left: 45px;
+    }
+  }
+
+  .contentuserdiv {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid #b2beb5;
+
+    .name {
+      height: 50%;
+      border-bottom: 2px solid #b2beb5;
+      color: white;
+      font-weight: 700;
+      span {
+        font-size: 45px;
+        padding-left: 15px;
+        padding-bottom: 10px;
+      }
+    }
+
+    .stats {
+      height: 50%;
+      display: flex;
+
+      .gamesplayed {
+        width: 50%;
+
+        span {
+          color: rgb(228, 228, 228);
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          height: 85%;
+          padding-right: 10px;
+        }
+      }
+
+      .warns {
+        width: 50%;
+        span {
+          color: rgb(255, 72, 72);
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          height: 85%;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+}

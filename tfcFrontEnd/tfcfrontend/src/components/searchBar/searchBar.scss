@@ -1,0 +1,49 @@
+$background-color: #ffffff;
+$item-color: #000000;
+
+.search-bar {
+  background-color: $background-color;
+  width: fit-content;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  justify-content: space-around;
+  border: 2px solid black;
+
+  &__input {
+    background-color: $background-color;
+    border-style: none;
+    border-radius: inherit;
+  }
+
+  &__input:focus {
+    outline: none;
+  }
+
+  &__icon {
+    color: $item-color;
+  }
+
+  &__button {
+    background-color: $background-color;
+    outline: none;
+    border-style: none;
+    width: fit-content;
+    padding: 0;
+    margin-top: 3px;
+  }
+
+  &__icon-voice {
+    margin-bottom: 2px;
+  }
+
+  &__button-input {
+    display: flex;
+    align-items: center;
+    
+    input{
+      color: #000000;
+    }
+  }
+}
