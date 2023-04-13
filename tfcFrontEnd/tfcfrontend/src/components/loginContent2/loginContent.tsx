@@ -1,47 +1,82 @@
-import "./logincontent.css";
+import { useEffect, useState } from "react";
+import "./logincontent.scss";
+import { login, LoginProps } from "./actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-export function LoginContent2(){
-  //TODO: Implement login function css and js for making the animations work.
-    return (
-        <div className="page">
-          <div className="container2">
-            <div className="left">
-              <div className="login">Login</div>
-              <div className="eula">By logging in you agree to the ridiculously long terms that you didn't bother to read</div>
+export function LoginContent2() {
+  const [form, setForm] = useState<LoginProps>({
+    login: "",
+    password: "",
+  });
+  const ERROR_MESSAGE = "Check again, there's something wrong";
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { userInfo, loading, error } = useSelector((state: any) => state.login);
+
+  useEffect(() => {
+    if ((userInfo != null || userInfo === "") && userInfo !== "error") {
+      navigate("/home");
+    }
+    if (error != null && userInfo === "error") {
+      const errorMessage = document.getElementById("error") as HTMLInputElement;
+      errorMessage.innerHTML = ERROR_MESSAGE;
+    }
+  }, [userInfo, navigate]);
+
+  const handleSubmitClick = () => {
+    console.log("Logging in with", form);
+
+    dispatch(login(form));
+  };
+  return (
+    <div className="containerLogin">
+      <div className="page">
+        <div className="container2">
+          <div className="left">
+            <div className="login">Login</div>
+            <div className="eula">
+              By logging in you agree to the ridiculously long terms that you
+              didn't bother to read
             </div>
-            <div className="right">
-              <svg className="svg2" viewBox="0 0 320 300">
-                <defs>
-                  <linearGradient
-                    id="linearGradient"
-                    x1="13"
-                    y1="193.49992"
-                    x2="307"
-                    y2="193.49992"
-                    gradientUnits="userSpaceOnUse">
-                    <stop
-                      style={{ stopColor: '#ff00ff' }}
-                      offset="0"
-                      id="stop876"
-                    />
-                    <stop
-                      style={{ stopColor: '#ff0000' }}
-                      offset="1"
-                      id="stop878"
-                    />
-                  </linearGradient>
-                </defs>
-                <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-              </svg>
-              <div className="form">
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" />
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" />
-                <input type="submit" id="submit" value="Submit" />
-              </div>
+          </div>
+          <div className="right">
+            <div className="form">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                className="form_email"
+                onChange={(e) => {
+                  setForm({
+                    ...form,
+                    login: e.target.value,
+                  });
+                }}
+              />
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                className="form_password"
+                onChange={(e) => {
+                  setForm({
+                    ...form,
+                    password: e.target.value,
+                  });
+                }}
+              />
+              <input
+                type="submit"
+                id="submit"
+                value="Submit"
+                onClick={handleSubmitClick}
+              />
+              <span className="errorBox" id="error"></span>
             </div>
           </div>
         </div>
-      );
+      </div>
+    </div>
+  );
 }

@@ -1,3 +1,3 @@
 export const Config = {
-  SERVICE_URL: "http://localhost:8083",
+  SERVICE_URL: "http://localhost:8084",
 };
