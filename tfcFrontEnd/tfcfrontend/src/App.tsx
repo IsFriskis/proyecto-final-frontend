@@ -7,6 +7,7 @@ import { NotFoundPage } from "./modules/notFound/NotFoundPage";
 import { Layout } from "./modules/layout/Layout";
 import { SearchPage } from "./modules/search/SearchPage";
 import { AboutPage } from "./modules/about/AboutPage";
+import { RegisterPage } from "./modules/register/RegisterPage";
 
 const ROUTES = [
   {
@@ -16,6 +17,10 @@ const ROUTES = [
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
   },
   {
     path: "/search",

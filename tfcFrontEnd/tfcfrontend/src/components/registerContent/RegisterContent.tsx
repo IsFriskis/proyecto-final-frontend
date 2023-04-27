@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import "./logincontent.scss";
-import { login, LoginProps } from "./actions";
+import "./registerContent.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export function LoginContent2() {
-  const [form, setForm] = useState<LoginProps>({
-    login: "",
+export function RegisterContent() {
+  const [form, setForm] = useState({
+    username: "",
+    mail: "",
     password: "",
   });
   const ERROR_MESSAGE = "Check again, there's something wrong";
@@ -27,30 +27,40 @@ export function LoginContent2() {
   const handleSubmitClick = () => {
     console.log("Logging in with", form);
 
-    dispatch(login(form));
   };
   return (
     <div className="containerLogin">
-      <div className="page_login">
-        <div className="container2_login">
-          <div className="left_login">
-            <div className="login_login">Login</div>
-            <div className="eula_login">
-              By logging in you agree to the ridiculously long terms that you
-              didn't bother to read
+      <div className="page">
+        <div className="container2">
+          <div className="left">
+            <div className="login">Register</div>
+            <div className="eula">
+              The username is unique as the email address. The password must contain at least a capital letter and a number in it.
             </div>
           </div>
-          <div className="right_login">
-            <div className="form_login_login">
-              <label htmlFor="email">Email</label>
+          <div className="right-register">
+            <div className="form">
+              <label htmlFor="username">Username</label>
               <input
-                type="email"
-                id="email"
-                className="form_email_login"
+                type="username"
+                id="username"
+                className="form_email"
                 onChange={(e) => {
                   setForm({
                     ...form,
-                    login: e.target.value,
+                    username: e.target.value,
+                  });
+                }}
+              />
+               <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                className="form_email"
+                onChange={(e) => {
+                  setForm({
+                    ...form,
+                    mail: e.target.value,
                   });
                 }}
               />
@@ -58,7 +68,7 @@ export function LoginContent2() {
               <input
                 type="password"
                 id="password"
-                className="form_password_login"
+                className="form_password"
                 onChange={(e) => {
                   setForm({
                     ...form,
@@ -68,11 +78,11 @@ export function LoginContent2() {
               />
               <input
                 type="submit"
-                id="submit_login"
+                id="submit"
                 value="Submit"
                 onClick={handleSubmitClick}
               />
-              <span className="errorBox_login" id="error"></span>
+              <span className="errorBox" id="error"></span>
             </div>
           </div>
         </div>
