@@ -1,5 +1,7 @@
 import axios from "axios";
 import { Config } from "src/config/Config";
+import { login } from "../loginContent2/actions";
+import { RegisterPropsToLoginProps } from "./transformRegisterToLoginProps";
 
 export interface RegisterProps {
   username: string;
@@ -10,10 +12,13 @@ export interface RegisterProps {
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_RESPONSE = "REGISTER_RESPONSE";
 
-
 export const register = (credentials: RegisterProps): any => {
   return (
-    dispatch: (arg0: { type: string; userInfo?: any; error?: string }) => void
+    dispatch: (arg0: {
+      type: string;
+      registerInfo?: any;
+      error?: string;
+    }) => void
   ) => {
     dispatch({
       type: REGISTER_REQUEST,
@@ -26,17 +31,17 @@ export const register = (credentials: RegisterProps): any => {
         baseURL: Config.SERVICE_URL,
       })
       .then((response) => {
-        const userInfo = response.data;
-
+        const registerInfo = response.data;
         dispatch({
           type: REGISTER_RESPONSE,
-          userInfo,
+          registerInfo,
         });
+        dispatch(login(RegisterPropsToLoginProps(registerInfo)));
       })
       .catch((e) => {
         dispatch({
           type: REGISTER_RESPONSE,
-          userInfo: "error",
+          registerInfo: "error",
           error: e.code,
         });
       });

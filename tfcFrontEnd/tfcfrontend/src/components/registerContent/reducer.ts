@@ -6,7 +6,7 @@ const initialState = {
     error: null,
   };
 
-  export const login = (state = initialState, action: any) => {
+  export const register = (state = initialState, action: any) => {
     switch (action.type) {
       case REGISTER_REQUEST:
         return {
@@ -19,7 +19,7 @@ const initialState = {
         return {
           ...state,
           loading: false,
-          userInfo: action.userInfo,
+          registerInfo: action.registerInfo,
           error: action.error,
         };
       default:

@@ -3,10 +3,13 @@ import { useState } from "react";
 import { FaBars } from "react-icons/fa/index";
 import logoGameZ from "src/images/logoGameZ.png";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export function CustomNavBar() {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+  const { userInfo } = useSelector((state: any) => state.login);
+
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -58,8 +61,16 @@ export function CustomNavBar() {
           </ul>
         </nav>
         <div className="buttons">
-          <button className="registerLogin" onClick={NavigateToLogin}>Login</button>
-          <button className="registerLogin" onClick={NavigateToRegister}>Register</button>
+          {userInfo != null &&
+          <div className="nameLogged">{userInfo.username}</div>
+          }
+          {(userInfo == null || userInfo == "error") &&
+          <>
+            <button className="registerLogin" onClick={NavigateToLogin}>Login</button>
+            <button className="registerLogin" onClick={NavigateToRegister}>Register</button>
+          </>
+          }
+          
         </div>
         <div className="menu-icon" onClick={toggleMenu}>
           <FaBars />

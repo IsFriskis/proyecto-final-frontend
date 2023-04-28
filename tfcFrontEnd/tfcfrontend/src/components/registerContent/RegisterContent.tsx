@@ -2,31 +2,36 @@ import { useEffect, useState } from "react";
 import "./registerContent.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { RegisterProps, register } from "./actions";
+import { LoginProps, login } from "../loginContent2/actions";
 
 export function RegisterContent() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<RegisterProps>({
     username: "",
     mail: "",
+    password: "",
+  });
+  const [formLogin, setFormLogin] = useState<LoginProps>({
+    login: "",
     password: "",
   });
   const ERROR_MESSAGE = "Check again, there's something wrong";
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userInfo, loading, error } = useSelector((state: any) => state.login);
+  const { registerInfo, error, loading} = useSelector((state: any) => state.register);
 
   useEffect(() => {
-    if ((userInfo != null || userInfo === "") && userInfo !== "error") {
+    if ((registerInfo != null || registerInfo === "") && registerInfo !== "error") {
       navigate("/home");
     }
-    if (error != null && userInfo === "error") {
+    if (error != null && registerInfo === "error") {
       const errorMessage = document.getElementById("error") as HTMLInputElement;
       errorMessage.innerHTML = ERROR_MESSAGE;
     }
-  }, [userInfo, navigate]);
+  }, [registerInfo, navigate]);
 
   const handleSubmitClick = () => {
-    console.log("Logging in with", form);
-
+    dispatch(register(form));
   };
   return (
     <div className="containerLogin">
@@ -50,6 +55,10 @@ export function RegisterContent() {
                     ...form,
                     username: e.target.value,
                   });
+                  setFormLogin({
+                    ...formLogin,
+                    login: e.target.value,
+                  });
                 }}
               />
                <label htmlFor="email">Email</label>
@@ -72,6 +81,10 @@ export function RegisterContent() {
                 onChange={(e) => {
                   setForm({
                     ...form,
+                    password: e.target.value,
+                  });
+                  setFormLogin({
+                    ...formLogin,
                     password: e.target.value,
                   });
                 }}
