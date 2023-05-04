@@ -1,25 +1,25 @@
-import { REGISTER_REQUEST, REGISTER_RESPONSE } from "./actions";
+import { RANKING_REQUEST, RANKING_RESPONSE } from "./actions";
 
 const initialState = {
   loading: false,
-  registerInfo: null,
+  rankingInfo: null,
   error: null,
 };
 
-export const register = (state = initialState, action: any) => {
+export const ranking = (state = initialState, action: any) => {
   switch (action.type) {
-    case REGISTER_REQUEST:
+    case RANKING_REQUEST:
       return {
         ...state,
         loading: true,
-        registerInfo: null,
+        rankingInfo: null,
         error: null,
       };
-    case REGISTER_RESPONSE:
+    case RANKING_RESPONSE:
       return {
         ...state,
         loading: false,
-        registerInfo: action.registerInfo,
+        rankingInfo: action.rankingInfo,
         error: action.error,
       };
     default:

@@ -8,6 +8,7 @@ import { Layout } from "./modules/layout/Layout";
 import { SearchPage } from "./modules/search/SearchPage";
 import { AboutPage } from "./modules/about/AboutPage";
 import { RegisterPage } from "./modules/register/RegisterPage";
+import { RankingPage } from "./modules/ranking/RankingPage";
 
 const ROUTES = [
   {
@@ -29,6 +30,10 @@ const ROUTES = [
   {
     path: "/about",
     element: <AboutPage />,
+  },
+  {
+    path: "/ranking",
+    element: <RankingPage />,
   },
 ];
 
