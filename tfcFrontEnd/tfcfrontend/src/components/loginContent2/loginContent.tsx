@@ -17,6 +17,7 @@ export function LoginContent2() {
   useEffect(() => {
     if ((userInfo != null || userInfo === "") && userInfo !== "error") {
       navigate("/home");
+      localStorage.setItem('loginInfo', `${userInfo.mail},${userInfo.username}`);
     }
     if (error != null && userInfo === "error") {
       const errorMessage = document.getElementById("error") as HTMLInputElement;

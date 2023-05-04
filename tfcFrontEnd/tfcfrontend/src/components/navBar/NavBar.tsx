@@ -37,6 +37,10 @@ export function CustomNavBar() {
   function NavigateToLogin() {
     navigate("/login");
   }
+  function handleLogoutButton(){
+    localStorage.setItem('loginInfo', '');
+    document.location = "http://localhost:3000/home";
+  }
 
   return (
     <>
@@ -61,10 +65,13 @@ export function CustomNavBar() {
           </ul>
         </nav>
         <div className="buttons">
-          {userInfo != null &&
-          <div className="nameLogged">{userInfo.username}</div>
+          {localStorage.getItem('loginInfo') != null && localStorage.getItem('loginInfo') != '' &&
+            <>
+            <div className="nameLogged">{localStorage.getItem('loginInfo')?.split(',')[1]}</div>
+            <button className="logoutButton" onClick={handleLogoutButton}>Logout</button>
+            </>
           }
-          {(userInfo == null || userInfo == "error") &&
+          {(localStorage.getItem('loginInfo') == '' || localStorage.getItem('loginInfo') == null || userInfo == "error") &&
           <>
             <button className="registerLogin" onClick={NavigateToLogin}>Login</button>
             <button className="registerLogin" onClick={NavigateToRegister}>Register</button>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RegisterProps, register } from "./actions";
 import { LoginProps, login } from "../loginContent2/actions";
+import { RegisterPropsToLoginProps } from "./transformRegisterToLoginProps";
 
 export function RegisterContent() {
   const [form, setForm] = useState<RegisterProps>({
@@ -23,6 +24,7 @@ export function RegisterContent() {
   useEffect(() => {
     if ((registerInfo != null || registerInfo === "") && registerInfo !== "error") {
       navigate("/home");
+      localStorage.setItem('loginInfo', `${form.mail},${form.username}`);
     }
     if (error != null && registerInfo === "error") {
       const errorMessage = document.getElementById("error") as HTMLInputElement;
