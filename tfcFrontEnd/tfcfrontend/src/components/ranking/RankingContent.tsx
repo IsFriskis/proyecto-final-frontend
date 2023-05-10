@@ -10,6 +10,8 @@ export const RankingContent = () => {
   const { rankingInfo, loading } = useSelector((state: any) => state.ranking);
   const [filteredGames, setFilteredGames] = useState([]);
   const [header2State, setHeader2State] = useState<"High" | "Low">("High");
+  const [filterNameValue, setFilterNameValue] = useState("");
+  const [filterDateValue, setFilterDateValue] = useState("");
 
   useEffect(() => {
     dispatch(ranking());
@@ -22,26 +24,11 @@ export const RankingContent = () => {
   };
 
   const onSearch = (searchTerm: string) => {
-    if (rankingInfo) {
-      setFilteredGames(
-        rankingInfo.filter((game: any) =>
-          game.username
-            .toUpperCase()
-            .includes(searchTerm.toString().toUpperCase())
-        )
-      );
-    }
+    setFilterNameValue(searchTerm);
   };
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (rankingInfo) {
-      setFilteredGames(
-        rankingInfo.filter((game: any) =>
-          game.date.split("T")[0].includes(event.target.value)
-        )
-      );
-    }
-    console.log(event.target.value);
+    setFilterDateValue(event.target.value);
   };
 
   useEffect(() => {
@@ -49,9 +36,35 @@ export const RankingContent = () => {
       setFilteredGames(rankingInfo);
       sortGames(filteredGames, header2State);
     }
-    console.log(rankingInfo);
-    console.log(filteredGames);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rankingInfo]);
+
+  useEffect(() => {
+    let toFilterList = rankingInfo;
+
+    /*
+    Filtro de fecha
+    */
+    if (toFilterList && filterDateValue !== "") {
+      toFilterList = toFilterList.filter((game: any) =>
+        game.date.split("T")[0].includes(filterDateValue)
+      );
+    }
+
+    /*
+    Filtro de nombre
+    */
+    if (toFilterList && filterNameValue !== "") {
+      toFilterList = toFilterList.filter((game: any) =>
+        game.username
+          .toUpperCase()
+          .includes(filterNameValue.toString().toUpperCase())
+      );
+    }
+
+    setFilteredGames(toFilterList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterNameValue, filterDateValue]);
 
   useEffect(() => {
     setFilteredGames(sortGames(filteredGames, header2State));
@@ -71,7 +84,6 @@ export const RankingContent = () => {
     });
   }
   return (
-    //<main className="container">
     <div className="parent-container">
       <div className="tableDiv">
         <table className="rankingTable">
@@ -128,6 +140,5 @@ export const RankingContent = () => {
         </table>
       </div>
     </div>
-    //
   );
 };

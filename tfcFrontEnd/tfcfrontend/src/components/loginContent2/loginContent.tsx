@@ -12,7 +12,7 @@ export function LoginContent2() {
   const ERROR_MESSAGE = "Check again, there's something wrong";
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userInfo, loading, error } = useSelector((state: any) => state.login);
+  const { userInfo, error } = useSelector((state: any) => state.login);
 
   useEffect(() => {
     if ((userInfo != null || userInfo === "") && userInfo !== "error") {
@@ -23,6 +23,7 @@ export function LoginContent2() {
       const errorMessage = document.getElementById("error") as HTMLInputElement;
       errorMessage.innerHTML = ERROR_MESSAGE;
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo, navigate]);
 
   const handleSubmitClick = () => {
