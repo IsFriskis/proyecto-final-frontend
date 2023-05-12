@@ -4,18 +4,8 @@ import { Config } from "src/config/Config";
 export const RANKING_REQUEST = "RANKING_REQUEST";
 export const RANKING_RESPONSE = "RANKING_RESPONSE";
 
-export const ranking = ():any => {
-    return (
-      dispatch: (arg0: {
-        type: string;
-        rankingInfo?: any;
-        error?: string;
-      }) => void
-    ) => {
-      dispatch({
-        type: RANKING_REQUEST,
-      });
-  
+  export const ranking = ():any => {
+    return  new Promise((resolve, reject) => {
       axios
         .request({
           url: `/game/ranking`,
@@ -23,18 +13,12 @@ export const ranking = ():any => {
           baseURL: Config.SERVICE_URL,
         })
         .then((response) => {
-          const rankingInfo = response.data;
-          dispatch({
-            type: RANKING_RESPONSE,
-            rankingInfo,
-          });
+          resolve(response.data);
         })
         .catch((e) => {
-          dispatch({
-            type: RANKING_RESPONSE,
-            rankingInfo: "error",
-            error: e.code,
-          });
+          reject(e)
         });
-    };
+    })
+  
+      
   };

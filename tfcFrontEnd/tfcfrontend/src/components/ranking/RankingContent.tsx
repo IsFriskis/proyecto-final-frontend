@@ -1,22 +1,33 @@
 import { useEffect, useState } from "react";
 import "./rankingContent.scss";
 import { SearchBar } from "../searchBar/SearchBar";
-import { useDispatch, useSelector } from "react-redux";
 import { ranking } from "./actions";
 import { GameInterface, RowRanking } from "./RowRankingTemplate";
-
 export const RankingContent = () => {
-  const dispatch = useDispatch();
-  const { rankingInfo, loading } = useSelector((state: any) => state.ranking);
+  const [loading, setLoading] = useState(false);
+  const [rankingInfo, setRankingInfo] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
   const [header2State, setHeader2State] = useState<"High" | "Low">("High");
   const [filterNameValue, setFilterNameValue] = useState("");
   const [filterDateValue, setFilterDateValue] = useState("");
 
   useEffect(() => {
-    dispatch(ranking());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await ranking();
+        setRankingInfo(response);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+    
   }, []);
+
 
   const toggleHeader2 = () => {
     setHeader2State((prevState) => (prevState === "High" ? "Low" : "High"));
