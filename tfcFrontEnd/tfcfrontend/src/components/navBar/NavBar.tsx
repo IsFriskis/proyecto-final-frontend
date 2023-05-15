@@ -65,13 +65,13 @@ export function CustomNavBar() {
           </ul>
         </nav>
         <div className="buttons">
-          {localStorage.getItem('loginInfo') != null && localStorage.getItem('loginInfo') != '' &&
+          {localStorage.getItem('loginInfo') !== null && localStorage.getItem('loginInfo') !== '' &&
             <>
             <div className="nameLogged">{localStorage.getItem('loginInfo')?.split(',')[1]}</div>
             <button className="logoutButton" onClick={handleLogoutButton}>Logout</button>
             </>
           }
-          {(localStorage.getItem('loginInfo') == '' || localStorage.getItem('loginInfo') == null || userInfo == "error") &&
+          {(localStorage.getItem('loginInfo') === '' || localStorage.getItem('loginInfo') == null || userInfo === "error") &&
           <>
             <button className="registerLogin" onClick={NavigateToLogin}>Login</button>
             <button className="registerLogin" onClick={NavigateToRegister}>Register</button>

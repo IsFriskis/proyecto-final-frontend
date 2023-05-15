@@ -24,7 +24,7 @@ export const login = (credentials: LoginProps): any => {
         baseURL: Config.SERVICE_URL,
       })
       .then((response) => {
-        const userInfo = response.data;
+        const userInfo = response.data.login;
 
         dispatch({
           type: LOGIN_RESPONSE,

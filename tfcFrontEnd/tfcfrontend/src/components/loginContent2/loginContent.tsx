@@ -3,6 +3,7 @@ import "./logincontent.scss";
 import { login, LoginProps } from "./actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import bcrypt from "react-native-bcrypt";
 
 export function LoginContent2() {
   const [form, setForm] = useState<LoginProps>({
@@ -17,13 +18,16 @@ export function LoginContent2() {
   useEffect(() => {
     if ((userInfo != null || userInfo === "") && userInfo !== "error") {
       navigate("/home");
-      localStorage.setItem('loginInfo', `${userInfo.mail},${userInfo.username}`);
+      localStorage.setItem(
+        "loginInfo",
+        `${userInfo.mail},${userInfo.username}`
+      );
     }
     if (error != null && userInfo === "error") {
       const errorMessage = document.getElementById("error") as HTMLInputElement;
       errorMessage.innerHTML = ERROR_MESSAGE;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo, navigate]);
 
   const handleSubmitClick = () => {
@@ -62,9 +66,17 @@ export function LoginContent2() {
                 id="password"
                 className="form_password_login"
                 onChange={(e) => {
-                  setForm({
-                    ...form,
-                    password: e.target.value,
+                  bcrypt.genSalt(10, function (err, salt) {
+                    if (salt) {
+                      bcrypt.hash(e.target.value, salt, function (err, hash) {
+                        if (hash) {
+                          setForm({
+                            ...form,
+                            password: hash,
+                          });
+                        }
+                      });
+                    }
                   });
                 }}
               />

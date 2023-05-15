@@ -1,10 +1,13 @@
+$header-height: 70px;
+$footer-height: 120px;
+
 .parent-container {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 .tableDiv{
-    height: 778px;
+    height: calc(100vh - $header-height - $footer-height);
     overflow-y: scroll;
     border: 2px solid black;
     margin-top: 20px;

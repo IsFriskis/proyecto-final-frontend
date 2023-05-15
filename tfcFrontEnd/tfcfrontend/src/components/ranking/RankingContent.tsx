@@ -3,6 +3,7 @@ import "./rankingContent.scss";
 import { SearchBar } from "../searchBar/SearchBar";
 import { ranking } from "./actions";
 import { GameInterface, RowRanking } from "./RowRankingTemplate";
+
 export const RankingContent = () => {
   const [loading, setLoading] = useState(false);
   const [rankingInfo, setRankingInfo] = useState([]);
@@ -17,15 +18,12 @@ export const RankingContent = () => {
       try {
         const response = await ranking();
         setRankingInfo(response);
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
       setLoading(false);
     };
-
     fetchData();
-    
   }, []);
 
 

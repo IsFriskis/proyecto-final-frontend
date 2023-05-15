@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { RegisterProps, register } from "./actions";
 import { LoginProps, login } from "../loginContent2/actions";
 import { RegisterPropsToLoginProps } from "./transformRegisterToLoginProps";
+import bcrypt from "react-native-bcrypt";
 
 export function RegisterContent() {
   const [form, setForm] = useState<RegisterProps>({
@@ -19,12 +20,17 @@ export function RegisterContent() {
   const ERROR_MESSAGE = "Check again, there's something wrong";
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { registerInfo, error, loading} = useSelector((state: any) => state.register);
+  const { registerInfo, error, loading } = useSelector(
+    (state: any) => state.register
+  );
 
   useEffect(() => {
-    if ((registerInfo != null || registerInfo === "") && registerInfo !== "error") {
+    if (
+      (registerInfo != null || registerInfo === "") &&
+      registerInfo !== "error"
+    ) {
       navigate("/home");
-      localStorage.setItem('loginInfo', `${form.mail},${form.username}`);
+      localStorage.setItem("loginInfo", `${form.mail},${form.username}`);
     }
     if (error != null && registerInfo === "error") {
       const errorMessage = document.getElementById("error") as HTMLInputElement;
@@ -42,7 +48,8 @@ export function RegisterContent() {
           <div className="left">
             <div className="login">Register</div>
             <div className="eula">
-              The username is unique as the email address. The password must contain at least a capital letter and a number in it.
+              The username is unique as the email address. The password must
+              contain at least a capital letter and a number in it.
             </div>
           </div>
           <div className="right-register">
@@ -63,7 +70,7 @@ export function RegisterContent() {
                   });
                 }}
               />
-               <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"
@@ -81,13 +88,21 @@ export function RegisterContent() {
                 id="password"
                 className="form_password"
                 onChange={(e) => {
-                  setForm({
-                    ...form,
-                    password: e.target.value,
-                  });
-                  setFormLogin({
-                    ...formLogin,
-                    password: e.target.value,
+                  bcrypt.genSalt(10, function (err, salt) {
+                    if (salt) {
+                      bcrypt.hash(e.target.value, salt, function (err, hash) {
+                        if (hash) {
+                          setForm({
+                            ...form,
+                            password: hash,
+                          });
+                          setFormLogin({
+                            ...formLogin,
+                            password: e.target.value,
+                          });
+                        }
+                      });
+                    }
                   });
                 }}
               />
