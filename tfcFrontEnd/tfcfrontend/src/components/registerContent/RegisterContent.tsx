@@ -3,8 +3,7 @@ import "./registerContent.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RegisterProps, register } from "./actions";
-import { LoginProps, login } from "../loginContent2/actions";
-import { RegisterPropsToLoginProps } from "./transformRegisterToLoginProps";
+import { LoginProps } from "../loginContent2/actions";
 import bcrypt from "react-native-bcrypt";
 
 export function RegisterContent() {
@@ -20,7 +19,7 @@ export function RegisterContent() {
   const ERROR_MESSAGE = "Check again, there's something wrong";
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { registerInfo, error, loading } = useSelector(
+  const { registerInfo, error } = useSelector(
     (state: any) => state.register
   );
 
@@ -36,6 +35,7 @@ export function RegisterContent() {
       const errorMessage = document.getElementById("error") as HTMLInputElement;
       errorMessage.innerHTML = ERROR_MESSAGE;
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [registerInfo, navigate]);
 
   const handleSubmitClick = () => {
