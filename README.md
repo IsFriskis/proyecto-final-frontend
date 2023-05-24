@@ -2,7 +2,7 @@
 
 Esta es la parte Front-End de la aplicación de Gameo. Se ha buscado desde un principio, un estilo minimalista. Con colores muy definidos y simples. La gama cromática contiene dos colores principales, el blanco y el negro. Por otra parte en dos apartados de la aplicación se observan dos gradientes de color, de naranja al rojo **(en el apartado del login)** y del verde al azul **(en el apartado del registro)**. El logo de la aplicación está hecho a mano y ha sido originario desde 0 en aplicaciones de photoshop.
 
-## Tecnlogías
+## Tecnologías
 
 Las tecnologías usadas en este apartado de la aplicacion fueron las siguientes listadas:
 
