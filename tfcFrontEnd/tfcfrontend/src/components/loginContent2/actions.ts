@@ -24,11 +24,11 @@ export const login = (credentials: LoginProps): any => {
         baseURL: Config.SERVICE_URL,
       })
       .then((response) => {
-        const userInfo = response.data.login;
+        const userInfo = response.data;
 
         dispatch({
           type: LOGIN_RESPONSE,
-          userInfo,
+          userInfo: userInfo,
         });
       })
       .catch((e) => {

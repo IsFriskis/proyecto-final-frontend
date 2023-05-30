@@ -88,23 +88,16 @@ export function RegisterContent() {
                 id="password"
                 className="form_password"
                 onChange={(e) => {
-                  bcrypt.genSalt(10, function (err, salt) {
-                    if (salt) {
-                      bcrypt.hash(e.target.value, salt, function (err, hash) {
-                        if (hash) {
                           setForm({
                             ...form,
-                            password: hash,
+                            password: e.target.value,
                           });
                           setFormLogin({
                             ...formLogin,
                             password: e.target.value,
                           });
                         }
-                      });
-                    }
-                  });
-                }}
+                      }
               />
               <input
                 type="submit"
