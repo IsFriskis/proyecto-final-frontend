@@ -7,7 +7,6 @@ import Lottie from "lottie-react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import LoadingWhite from "src/animations/LoadingWhite.json";
-import loading_6 from "src/animations/loading_6.json";
 import { EmbedTweet } from "../embedTweet/EmbedTweet";
 
 export const IconStatus = () => {

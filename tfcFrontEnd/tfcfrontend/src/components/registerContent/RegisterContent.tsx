@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RegisterProps, register } from "./actions";
 import { LoginProps } from "../loginContent2/actions";
-import bcrypt from "react-native-bcrypt";
 
 export function RegisterContent() {
   const [form, setForm] = useState<RegisterProps>({

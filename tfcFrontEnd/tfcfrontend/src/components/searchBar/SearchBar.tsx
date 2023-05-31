@@ -21,6 +21,7 @@ export function SearchBar(props: SearchBarProps) {
 
   useEffect(() => {
     onSearch(searchDebounced);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchDebounced]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
